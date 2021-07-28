@@ -121,3 +121,28 @@ if (! function_exists('links')) {
         return Phpmng\Database\Database::links($current_page, $pages);
     }
 }
+
+/**
+ * get Authenticated (user|admin) data
+ *
+ * @param string $table
+ * @return string
+ */
+if (! function_exists('auth')) {
+    function auth($table) {
+        $auth = Phpmng\Session\Session::get($table) ?: Phplite\Cookie\Cookie::get($table);
+        return \Phpmng\Database\Database::table($table)->where('id', '=', $auth)->first();
+    }
+}
+
+/**
+ * Url path
+ *
+ * @param string $path
+ * @return mixed
+ */
+if (! function_exists('url')) {
+    function url($path) {
+        return Phpmng\URL\URL::path($path);
+    }
+}
