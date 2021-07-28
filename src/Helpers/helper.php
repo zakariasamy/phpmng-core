@@ -130,7 +130,7 @@ if (! function_exists('links')) {
  */
 if (! function_exists('auth')) {
     function auth($table) {
-        $auth = Phpmng\Session\Session::get($table) ?: Phplite\Cookie\Cookie::get($table);
+        $auth = Phpmng\Session\Session::get($table) ?: Phpmng\Cookie\Cookie::get($table);
         return \Phpmng\Database\Database::table($table)->where('id', '=', $auth)->first();
     }
 }
