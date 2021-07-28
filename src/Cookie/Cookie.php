@@ -56,7 +56,8 @@ class Cookie{
     public static function remove($key){
  
         if(static::has($key)){
-            setcookie($key, null, -1);
+            unset($_COOKIE[$key]);
+            setcookie($key, null, -1, '/');
             return 1;
         }
         else
