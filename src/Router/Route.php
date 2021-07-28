@@ -113,7 +113,7 @@ class Route{
         else
             throw new \Exception('Please provide valid callback function');
 
-        static::$prefix .= $parent_prefix;
+        static::$prefix = $parent_prefix;
     }
 
     /**
@@ -142,7 +142,7 @@ class Route{
         else
             throw new \Exception('Please provide valid callback function');
 
-        static::$middleware .= $parent_middleware;
+        static::$middleware = $parent_middleware;
     }
 
     /**
