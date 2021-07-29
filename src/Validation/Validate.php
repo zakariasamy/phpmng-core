@@ -6,6 +6,7 @@ use Phpmng\URL\URL;
 use Phpmng\Http\Request;
 use Phpmng\Session\Session;
 use Rakit\Validation\Validator;
+use Phpmng\Validation\Rules\UniqueRule;
 
 class Validate
 {
@@ -23,6 +24,8 @@ class Validate
 
         $validator = new Validator;
 
+        $validator->addValidator('unique', new UniqueRule()); // Add unique rule
+        
         // make it
         $validation = $validator->make($_POST + $_FILES, $rules);
 
@@ -43,3 +46,4 @@ class Validate
         }
     }
 }
+
