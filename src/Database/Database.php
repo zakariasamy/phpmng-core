@@ -123,7 +123,7 @@ class Database {
      * 
      * @val bool
      */
-    protected static $raw = true;
+    protected static $raw;
 
     /**
      * Database constructor
@@ -239,7 +239,7 @@ class Database {
      * @return object $type
      */
     public static function join($table, $first, $operator, $second, $type = "INNER") {
-        static::$join .= " " . $type . " JOIN " . $table . " ON " . $first . $operator . $second . " ";
+        static::$join .= " " . $type . " JOIN " . $table . " ON " . static::$table . '.' . $first . $operator . $table . '.' .$second . " ";
 
         return static::instance();
     }
@@ -606,7 +606,7 @@ class Database {
             # Show arrow of first page
             $active_class = $current_page == 1 ? 'active' : '';
             $href = strpos($full_link, '?') ? ($full_link.'&page=1') : ($full_link.'?page=1');
-            $html .= "<li class='link $active_class'><a href='$href'>&#8594;</a></li>";
+            $html .= "<li class='link $active_class'><a href='$href'>&#8592;</a></li>";
             
 
             # Show the rest of pages
@@ -619,7 +619,7 @@ class Database {
             # Show arrow of Last page
                 $active_class = $current_page == 1 ? 'active' : '';
                 $href = strpos($full_link, '?') ? ($full_link."&page=$pages") : ($full_link."?page=$pages");
-                $html .= "<li class='link $active_class'><a href='$href'>&#8592;</a></li>";
+                $html .= "<li class='link $active_class'><a href='$href'>&#8594;</a></li>";
 
 
             
@@ -670,3 +670,4 @@ class Database {
          return static::instance();
      }
 }
+
