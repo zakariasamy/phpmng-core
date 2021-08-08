@@ -146,3 +146,15 @@ if (! function_exists('url')) {
         return Phpmng\URL\URL::path($path);
     }
 }
+
+/**
+ * Get .env data
+ *
+ * @param string $key
+ * @return string $value
+ */
+if (! function_exists('env')) {
+    function env($key) {
+        return getenv($key);
+    }
+}

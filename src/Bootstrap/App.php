@@ -4,14 +4,18 @@ namespace Phpmng\Bootstrap;
 use Phpmng\File\File;
 use Phpmng\Http\Request;
 use Phpmng\Router\Route;
-use Phpmng\Cookie\Cookie;
 use Phpmng\Http\Response;
 use Phpmng\Session\Session;
 use Phpmng\Exceptions\Whoops;
+use DevCoder\DotEnv;
 
 class app{
 
     public static function run(){
+
+        //Register php-dotenv library
+        $absolutePathToEnvFile = File::path('.env');
+        (new DotEnv($absolutePathToEnvFile))->load();
 
         // Register Whoops to handle erros
         Whoops::handle();
@@ -38,3 +42,4 @@ class app{
     }
 
 }
+
